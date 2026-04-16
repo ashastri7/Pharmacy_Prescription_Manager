@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Prescription.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">pharmacy-prescription-manager</a> &gt; <a href="index.source.html" class="el_package">com.pharmacy</a> &gt; <span class="el_source">Prescription.java</span></div><h1>Prescription.java</h1><pre class="source lang-java linenums">package com.pharmacy;
+
+public class Prescription {
+    private String prescriptionId;
+    private String patientName;
+    private int patientAge;
+    private double patientWeightKg;
+    private String drugName;
+    private double dosageMg;
+    private int refillsRemaining;
+    private boolean paid;
+
+    public Prescription(String prescriptionId, String patientName,
+                        int patientAge, double patientWeightKg,
+<span class="fc" id="L15">                        String drugName, double dosageMg, int refillsRemaining) {</span>
+<span class="fc" id="L16">        this.prescriptionId   = prescriptionId;</span>
+<span class="fc" id="L17">        this.patientName      = patientName;</span>
+<span class="fc" id="L18">        this.patientAge       = patientAge;</span>
+<span class="fc" id="L19">        this.patientWeightKg  = patientWeightKg;</span>
+<span class="fc" id="L20">        this.drugName         = drugName;</span>
+<span class="fc" id="L21">        this.dosageMg         = dosageMg;</span>
+<span class="fc" id="L22">        this.refillsRemaining = refillsRemaining;</span>
+<span class="fc" id="L23">        this.paid             = false;</span>
+<span class="fc" id="L24">    }</span>
+
+<span class="nc" id="L26">    public String getPrescriptionId()       { return prescriptionId; }</span>
+<span class="fc" id="L27">    public String getPatientName()          { return patientName; }</span>
+<span class="fc" id="L28">    public int getPatientAge()              { return patientAge; }</span>
+<span class="nc" id="L29">    public double getPatientWeightKg()      { return patientWeightKg; }</span>
+<span class="fc" id="L30">    public String getDrugName()             { return drugName; }</span>
+<span class="fc" id="L31">    public double getDosageMg()             { return dosageMg; }</span>
+<span class="fc" id="L32">    public int getRefillsRemaining()        { return refillsRemaining; }</span>
+<span class="nc" id="L33">    public boolean isPaid()                 { return paid; }</span>
+
+<span class="fc" id="L35">    public void setRefillsRemaining(int r)  { this.refillsRemaining = r; }</span>
+<span class="nc" id="L36">    public void setPaid(boolean paid)       { this.paid = paid; }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>

@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>PharmacyController.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">pharmacy-prescription-manager</a> &gt; <a href="index.source.html" class="el_package">com.pharmacy</a> &gt; <span class="el_source">PharmacyController.java</span></div><h1>PharmacyController.java</h1><pre class="source lang-java linenums">package com.pharmacy;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+@Controller
+<span class="nc" id="L10">public class PharmacyController {</span>
+
+<span class="nc" id="L12">    private final PharmacySystem pharmacy = new PharmacySystem();</span>
+
+    // Show home page
+    @GetMapping(&quot;/&quot;)
+    public String index() {
+<span class="nc" id="L17">        return &quot;index&quot;;</span>
+    }
+
+    // Register a prescription
+    @PostMapping(&quot;/register&quot;)
+    public String register(
+            @RequestParam String id,
+            @RequestParam String patientName,
+            @RequestParam int patientAge,
+            @RequestParam double weightKg,
+            @RequestParam String drugName,
+            @RequestParam double dosageMg,
+            @RequestParam int refills,
+            Model model) {
+        try {
+<span class="nc" id="L32">            pharmacy.registerPrescription(id, patientName, patientAge,</span>
+                    weightKg, drugName, dosageMg, refills);
+<span class="nc" id="L34">            model.addAttribute(&quot;action&quot;, &quot;Register Prescription&quot;);</span>
+<span class="nc" id="L35">            model.addAttribute(&quot;success&quot;, true);</span>
+<span class="nc" id="L36">            model.addAttribute(&quot;message&quot;,</span>
+                &quot;Prescription registered successfully for &quot; + patientName);
+<span class="nc" id="L38">            model.addAttribute(&quot;details&quot;, new String[]{</span>
+                &quot;Prescription ID: &quot; + id,
+                &quot;Patient: &quot; + patientName,
+                &quot;Age: &quot; + patientAge,
+                &quot;Weight: &quot; + weightKg + &quot; kg&quot;,
+                &quot;Drug: &quot; + drugName,
+                &quot;Dosage: &quot; + dosageMg + &quot; mg&quot;,
+                &quot;Refills: &quot; + refills
+            });
+<span class="nc" id="L47">        } catch (Exception e) {</span>
+<span class="nc" id="L48">            model.addAttribute(&quot;action&quot;, &quot;Register Prescription&quot;);</span>
+<span class="nc" id="L49">            model.addAttribute(&quot;success&quot;, false);</span>
+<span class="nc" id="L50">            model.addAttribute(&quot;message&quot;, &quot;Error: &quot; + e.getMessage());</span>
+<span class="nc" id="L51">        }</span>
+<span class="nc" id="L52">        return &quot;result&quot;;</span>
+    }
+
+    // Calculate dosage
+    @PostMapping(&quot;/dosage&quot;)
+    public String dosage(
+            @RequestParam int age,
+            @RequestParam double weight,
+            Model model) {
+        try {
+<span class="nc" id="L62">            double dosage = pharmacy.calculateDosage(age, weight);</span>
+<span class="nc bnc" id="L63" title="All 4 branches missed.">            String category = age &lt;= 17 ? &quot;Pediatric&quot; : age &lt;= 64 ? &quot;Adult&quot; : &quot;Elderly&quot;;</span>
+<span class="nc" id="L64">            model.addAttribute(&quot;action&quot;, &quot;Calculate Dosage&quot;);</span>
+<span class="nc" id="L65">            model.addAttribute(&quot;success&quot;, true);</span>
+<span class="nc" id="L66">            model.addAttribute(&quot;message&quot;,</span>
+                &quot;Recommended dosage: &quot; + dosage + &quot; mg&quot;);
+<span class="nc" id="L68">            model.addAttribute(&quot;details&quot;, new String[]{</span>
+                &quot;Patient age: &quot; + age + &quot; (&quot; + category + &quot;)&quot;,
+                &quot;Patient weight: &quot; + weight + &quot; kg&quot;,
+                &quot;Calculated dosage: &quot; + dosage + &quot; mg&quot;
+            });
+<span class="nc" id="L73">        } catch (Exception e) {</span>
+<span class="nc" id="L74">            model.addAttribute(&quot;action&quot;, &quot;Calculate Dosage&quot;);</span>
+<span class="nc" id="L75">            model.addAttribute(&quot;success&quot;, false);</span>
+<span class="nc" id="L76">            model.addAttribute(&quot;message&quot;, &quot;Error: &quot; + e.getMessage());</span>
+<span class="nc" id="L77">        }</span>
+<span class="nc" id="L78">        return &quot;result&quot;;</span>
+    }
+
+    // Dispense medication
+    @PostMapping(&quot;/dispense&quot;)
+    public String dispense(
+            @RequestParam String id,
+            Model model) {
+        try {
+<span class="nc" id="L87">            String result = pharmacy.dispenseMedication(id);</span>
+<span class="nc" id="L88">            model.addAttribute(&quot;action&quot;, &quot;Dispense Medication&quot;);</span>
+<span class="nc" id="L89">            model.addAttribute(&quot;success&quot;, true);</span>
+<span class="nc" id="L90">            model.addAttribute(&quot;message&quot;, result);</span>
+<span class="nc" id="L91">            model.addAttribute(&quot;details&quot;, new String[]{</span>
+                &quot;Prescription ID: &quot; + id,
+                &quot;Status: Dispensed successfully&quot;,
+                &quot;Refills remaining: &quot; +
+<span class="nc" id="L95">                    pharmacy.getPrescription(id).getRefillsRemaining()</span>
+            });
+<span class="nc" id="L97">        } catch (Exception e) {</span>
+<span class="nc" id="L98">            model.addAttribute(&quot;action&quot;, &quot;Dispense Medication&quot;);</span>
+<span class="nc" id="L99">            model.addAttribute(&quot;success&quot;, false);</span>
+<span class="nc" id="L100">            model.addAttribute(&quot;message&quot;, &quot;Error: &quot; + e.getMessage());</span>
+<span class="nc" id="L101">        }</span>
+<span class="nc" id="L102">        return &quot;result&quot;;</span>
+    }
+
+    // Calculate cost
+    @PostMapping(&quot;/cost&quot;)
+    public String cost(
+            @RequestParam int age,
+            @RequestParam double dosage,
+            Model model) {
+        try {
+<span class="nc" id="L112">            double cost = pharmacy.calculateCost(age, dosage);</span>
+<span class="nc bnc" id="L113" title="All 2 branches missed.">            String category = age &lt; 18 ? &quot;Pediatric (+$15 surcharge)&quot;</span>
+<span class="nc bnc" id="L114" title="All 2 branches missed.">                            : age &gt;= 65 ? &quot;Elderly (-$10 discount)&quot;</span>
+<span class="nc" id="L115">                            : &quot;Adult (standard rate)&quot;;</span>
+<span class="nc" id="L116">            model.addAttribute(&quot;action&quot;, &quot;Calculate Cost&quot;);</span>
+<span class="nc" id="L117">            model.addAttribute(&quot;success&quot;, true);</span>
+<span class="nc" id="L118">            model.addAttribute(&quot;message&quot;,</span>
+                &quot;Total prescription cost: $&quot; + cost);
+<span class="nc" id="L120">            model.addAttribute(&quot;details&quot;, new String[]{</span>
+                &quot;Patient age: &quot; + age,
+                &quot;Dosage: &quot; + dosage + &quot; mg&quot;,
+                &quot;Pricing category: &quot; + category,
+<span class="nc" id="L124">                &quot;Base cost: $&quot; + String.format(&quot;%.2f&quot;, 20.0 + dosage * 0.50),</span>
+                &quot;Final cost: $&quot; + cost
+            });
+<span class="nc" id="L127">        } catch (Exception e) {</span>
+<span class="nc" id="L128">            model.addAttribute(&quot;action&quot;, &quot;Calculate Cost&quot;);</span>
+<span class="nc" id="L129">            model.addAttribute(&quot;success&quot;, false);</span>
+<span class="nc" id="L130">            model.addAttribute(&quot;message&quot;, &quot;Error: &quot; + e.getMessage());</span>
+<span class="nc" id="L131">        }</span>
+<span class="nc" id="L132">        return &quot;result&quot;;</span>
+    }
+
+    // Validate prescription
+    @PostMapping(&quot;/validate&quot;)
+    public String validate(
+            @RequestParam String id,
+            Model model) {
+        try {
+<span class="nc" id="L141">            boolean valid = pharmacy.validatePrescription(id);</span>
+<span class="nc" id="L142">            model.addAttribute(&quot;action&quot;, &quot;Validate Prescription&quot;);</span>
+<span class="nc" id="L143">            model.addAttribute(&quot;success&quot;, valid);</span>
+<span class="nc" id="L144">            model.addAttribute(&quot;message&quot;,</span>
+<span class="nc bnc" id="L145" title="All 2 branches missed.">                valid ? &quot;Prescription &quot; + id + &quot; is VALID for dispensing&quot;</span>
+<span class="nc" id="L146">                      : &quot;Prescription &quot; + id + &quot; is INVALID&quot;);</span>
+<span class="nc" id="L147">            model.addAttribute(&quot;details&quot;, new String[]{</span>
+                &quot;Prescription ID: &quot; + id,
+                &quot;Valid: &quot; + valid
+            });
+<span class="nc" id="L151">        } catch (Exception e) {</span>
+<span class="nc" id="L152">            model.addAttribute(&quot;action&quot;, &quot;Validate Prescription&quot;);</span>
+<span class="nc" id="L153">            model.addAttribute(&quot;success&quot;, false);</span>
+<span class="nc" id="L154">            model.addAttribute(&quot;message&quot;, &quot;Error: &quot; + e.getMessage());</span>
+<span class="nc" id="L155">        }</span>
+<span class="nc" id="L156">        return &quot;result&quot;;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>
