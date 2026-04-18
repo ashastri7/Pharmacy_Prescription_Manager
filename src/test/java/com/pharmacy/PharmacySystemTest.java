@@ -283,7 +283,7 @@ class PharmacySystemTest {
     // ══════════════════════════════════════════════
 
     @Test void cost_epc_pediatric() {
-        assertEquals(60.00, pharmacy.calculateCost(10, 500));
+        assertEquals(60.00, pharmacy.calculateCost(10, 50));
     }
     @Test void cost_epc_adult() {
         assertEquals(45.00, pharmacy.calculateCost(40, 50));
