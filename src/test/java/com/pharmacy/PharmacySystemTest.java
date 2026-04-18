@@ -333,4 +333,29 @@ class PharmacySystemTest {
         pharmacy.dispenseMedication("P001");
         assertEquals(1, pharmacy.getPrescription("P001").getRefillsRemaining());
     }
+
+    // ══════════════════════════════════════════════
+// PRESCRIPTION GETTER COVERAGE TESTS
+// ══════════════════════════════════════════════
+
+@Test void prescription_getId() {
+    registerDefault("P001");
+    assertEquals("P001", pharmacy.getPrescription("P001").getPrescriptionId());
+}
+
+@Test void prescription_getWeight() {
+    registerDefault("P001");
+    assertEquals(70.0, pharmacy.getPrescription("P001").getPatientWeightKg());
+}
+
+@Test void prescription_isPaid_defaultFalse() {
+    registerDefault("P001");
+    assertFalse(pharmacy.getPrescription("P001").isPaid());
+}
+
+@Test void prescription_setPaid_true() {
+    registerDefault("P001");
+    pharmacy.getPrescription("P001").setPaid(true);
+    assertTrue(pharmacy.getPrescription("P001").isPaid());
+}
 }
