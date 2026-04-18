@@ -283,7 +283,7 @@ class PharmacySystemTest {
     // ══════════════════════════════════════════════
 
     @Test void cost_epc_pediatric() {
-        assertEquals(60.00, pharmacy.calculateCost(10, 50));
+        assertEquals(60.00, pharmacy.calculateCost(10, 500));
     }
     @Test void cost_epc_adult() {
         assertEquals(45.00, pharmacy.calculateCost(40, 50));
@@ -379,6 +379,6 @@ class PharmacySystemTest {
 
 @Test void reg_dosageNegative_throws() {
     assertThrows(IllegalArgumentException.class, () ->
-        pharmacy.registerPrescription("", "Alice", 30, 70, "Drug", -5, 2));
+        pharmacy.registerPrescription("P001", "Alice", 30, 70, "Drug", -5, 2));
 }
 }
