@@ -79,7 +79,7 @@ private final Map<String, Prescription> prescriptions = new HashMap<>();
 
         // Check patient age is valid for dispensing
         if (p.getPatientAge() < 1) {
-            return false;
+        return false;
         }
 
         return true;
