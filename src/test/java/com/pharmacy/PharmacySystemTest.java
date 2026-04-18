@@ -379,6 +379,6 @@ class PharmacySystemTest {
 
 @Test void reg_dosageNegative_throws() {
     assertThrows(IllegalArgumentException.class, () ->
-        pharmacy.registerPrescription("P001", "Alice", 30, 70, "Drug", 5, 2));
+        pharmacy.registerPrescription("P001", "Alice", 30, 70, "Drug", -5, 2));
 }
 }
