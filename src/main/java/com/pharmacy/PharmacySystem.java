@@ -5,15 +5,11 @@ import java.util.Map;
 
 public class PharmacySystem {
 
-    private Map<String, Prescription> prescriptions = new HashMap<>();
+private final Map<String, Prescription> prescriptions = new HashMap<>();
 
-    // ─────────────────────────────────────────────
     // FUNCTION 1: Register a new prescription
-    // ─────────────────────────────────────────────
-    public void registerPrescription(String id, String patientName,
-                                     int patientAge, double weightKg,
-                                     String drugName, double dosageMg,
-                                     int refills) {
+    public void registerPrescription(String id, String patientName, int patientAge, double weightKg, String drugName, double dosageMg,
+                                    int refills) {
         if (id == null || id.trim().isEmpty())
             throw new IllegalArgumentException("Prescription ID cannot be empty");
         if (patientName == null || patientName.trim().isEmpty())
@@ -32,16 +28,14 @@ public class PharmacySystem {
             throw new IllegalArgumentException("Prescription ID already exists");
 
         prescriptions.put(id, new Prescription(id, patientName, patientAge,
-                                               weightKg, drugName, dosageMg, refills));
+                                            weightKg, drugName, dosageMg, refills));
     }
 
-    // ─────────────────────────────────────────────
     // FUNCTION 2: Calculate dosage based on weight
     // Rule: 5mg per kg for adults (18-64)
     //       3mg per kg for children (0-17)
     //       4mg per kg for elderly (65-120)
     // Min dose: 10mg, Max dose: 500mg
-    // ─────────────────────────────────────────────
     public double calculateDosage(int patientAge, double weightKg) {
         if (patientAge < 0 || patientAge > 120)
             throw new IllegalArgumentException("Age must be between 0 and 120");
@@ -65,10 +59,8 @@ public class PharmacySystem {
         return dosage;
     }
 
-    // ─────────────────────────────────────────────
     // FUNCTION 3: Validate a prescription
     // Returns true only if all conditions are met
-    // ─────────────────────────────────────────────
     public boolean validatePrescription(String id) {
         if (id == null || id.trim().isEmpty())
             throw new IllegalArgumentException("Prescription ID cannot be empty");
@@ -86,15 +78,14 @@ public class PharmacySystem {
             return false;
 
         // Check patient age is valid for dispensing
-        if (p.getPatientAge() < 1)
+        if (p.getPatientAge() < 1) {
             return false;
+        }
 
         return true;
     }
 
-    // ─────────────────────────────────────────────
     // FUNCTION 4: Dispense (use one refill)
-    // ─────────────────────────────────────────────
     public String dispenseMedication(String id) {
         if (id == null || id.trim().isEmpty())
             throw new IllegalArgumentException("Prescription ID cannot be empty");
@@ -112,14 +103,13 @@ public class PharmacySystem {
                 + ". Refills left: " + p.getRefillsRemaining();
     }
 
-    // ─────────────────────────────────────────────
+    
     // FUNCTION 5: Calculate prescription cost
     // Base cost: $20
     // + $0.50 per mg of dosage
     // Pediatric surcharge (age < 18): +$15
     // Elderly discount (age >= 65): -$10
     // Minimum total: $20
-    // ─────────────────────────────────────────────
     public double calculateCost(int patientAge, double dosageMg) {
         if (patientAge < 0 || patientAge > 120)
             throw new IllegalArgumentException("Age must be between 0 and 120");

@@ -22,10 +22,10 @@ import java.util.Map;
 <span class="fc" id="L22">            throw new IllegalArgumentException(&quot;Patient age must be between 0 and 120&quot;);</span>
 <span class="fc bfc" id="L23" title="All 4 branches covered.">        if (weightKg &lt;= 0 || weightKg &gt; 300)</span>
 <span class="fc" id="L24">            throw new IllegalArgumentException(&quot;Weight must be between 0 and 300 kg&quot;);</span>
-<span class="pc bpc" id="L25" title="2 of 4 branches missed.">        if (drugName == null || drugName.trim().isEmpty())</span>
-<span class="nc" id="L26">            throw new IllegalArgumentException(&quot;Drug name cannot be empty&quot;);</span>
-<span class="pc bpc" id="L27" title="1 of 2 branches missed.">        if (dosageMg &lt;= 0)</span>
-<span class="nc" id="L28">            throw new IllegalArgumentException(&quot;Dosage must be greater than 0&quot;);</span>
+<span class="fc bfc" id="L25" title="All 4 branches covered.">        if (drugName == null || drugName.trim().isEmpty())</span>
+<span class="fc" id="L26">            throw new IllegalArgumentException(&quot;Drug name cannot be empty&quot;);</span>
+<span class="fc bfc" id="L27" title="All 2 branches covered.">        if (dosageMg &lt;= 0)</span>
+<span class="fc" id="L28">            throw new IllegalArgumentException(&quot;Dosage must be greater than 0&quot;);</span>
 <span class="fc bfc" id="L29" title="All 4 branches covered.">        if (refills &lt; 0 || refills &gt; 12)</span>
 <span class="fc" id="L30">            throw new IllegalArgumentException(&quot;Refills must be between 0 and 12&quot;);</span>
 <span class="fc bfc" id="L31" title="All 2 branches covered.">        if (prescriptions.containsKey(id))</span>
