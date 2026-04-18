@@ -358,4 +358,27 @@ class PharmacySystemTest {
     pharmacy.getPrescription("P001").setPaid(true);
     assertTrue(pharmacy.getPrescription("P001").isPaid());
 }
+// ══════════════════════════════════════════════
+// MISSING BRANCH COVERAGE FIXES
+// ══════════════════════════════════════════════
+
+@Test void reg_nullDrugName_throws() {
+    assertThrows(IllegalArgumentException.class, () ->
+        pharmacy.registerPrescription("P001", "Alice", 30, 70, null, 100, 2));
+}
+
+@Test void reg_emptyDrugName_throws() {
+    assertThrows(IllegalArgumentException.class, () ->
+        pharmacy.registerPrescription("P001", "Alice", 30, 70, "", 100, 2));
+}
+
+@Test void reg_dosageZero_throws() {
+    assertThrows(IllegalArgumentException.class, () ->
+        pharmacy.registerPrescription("P001", "Alice", 30, 70, "Drug", 0, 2));
+}
+
+@Test void reg_dosageNegative_throws() {
+    assertThrows(IllegalArgumentException.class, () ->
+        pharmacy.registerPrescription("P001", "Alice", 30, 70, "Drug", -5, 2));
+}
 }
