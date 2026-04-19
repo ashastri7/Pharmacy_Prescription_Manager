@@ -483,3 +483,28 @@ All changes tracked via Git and GitHub. Full commit history available at the rep
 | Cloud deployment | Railway deployment configuration |
 | Controller tests | MockMvc integration tests |
 | Final submission | 98 tests passing, 96% coverage |
+
+
+## 🧬 Mutation Testing
+
+Mutation testing is performed using **PITest** to verify the strength 
+of the test suite.
+
+### What is Mutation Testing?
+PITest automatically introduces small bugs (mutations) into the source 
+code and verifies that the existing test suite detects them.
+
+### Mutation Types Used
+| Mutator | Description |
+|---|---|
+| CONDITIONALS_BOUNDARY | Changes < to <=, > to >= |
+| NEGATE_CONDITIONALS | Flips boolean conditions |
+| MATH | Changes arithmetic operators |
+| RETURN_VALS | Changes return values |
+
+### How to Run
+```bash
+mvn test-compile org.pitest:pitest-maven:mutationCoverage
+open target/pit-reports/index.html
+```
+
