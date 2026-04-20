@@ -121,7 +121,7 @@ import java.util.Map;
 <span class="fc bfc" id="L121" title="All 2 branches covered.">        if (patientAge &lt; 18)       cost += 15.0;  // pediatric surcharge</span>
 <span class="fc bfc" id="L122" title="All 2 branches covered.">        else if (patientAge &gt;= 65) cost -= 10.0;  // elderly discount</span>
 
-<span class="pc bpc" id="L124" title="1 of 2 branches missed.">        if (cost &lt; 20.0) cost = 20.0;  // minimum cost floor</span>
+<span class="fc bfc" id="L124" title="All 2 branches covered.">        if (cost &lt; 20.0) cost = 20.0;  // minimum cost floor</span>
 
 <span class="fc" id="L126">        return Math.round(cost * 100.0) / 100.0;</span>
     }

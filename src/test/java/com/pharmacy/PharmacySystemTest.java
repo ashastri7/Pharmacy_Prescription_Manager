@@ -381,4 +381,43 @@ class PharmacySystemTest {
     assertThrows(IllegalArgumentException.class, () ->
         pharmacy.registerPrescription("P001", "Alice", 30, 70, "Drug", -5, 2));
 }
+
+@Test void dosage_exactlyAtMin_KillsBoundaryMutant() {
+    assertEquals(10.0, pharmacy.calculateDosage(20, 2.0));
+}
+
+@Test void dosage_exactlyAtMax_KillsBoundaryMutant() {
+    assertEquals(500.0, pharmacy.calculateDosage(20, 100.0));
+}
+
+@Test void validate_dosageExactlyAtMin_returnsTrue() {
+    pharmacy.registerPrescription("P-MIN", "Alice", 30, 70, "Drug", 10.0, 2);
+    assertTrue(pharmacy.validatePrescription("P-MIN"), "Exact 10.0 should be valid");
+}
+
+@Test void validate_dosageExactlyAtMax_returnsTrue() {
+    pharmacy.registerPrescription("P-MAX", "Alice", 30, 70, "Drug", 500.0, 2);
+    assertTrue(pharmacy.validatePrescription("P-MAX"), "Exact 500.0 should be valid");
+}
+
+@Test void validate_dosageJustBelowMin_returnsFalse() {
+    pharmacy.registerPrescription("P-UNDER", "Alice", 30, 70, "Drug", 9.9, 2);
+    assertFalse(pharmacy.validatePrescription("P-UNDER"), "9.9 is below the 10.0 limit");
+}
+
+@Test void validate_dosageJustAboveMax_returnsFalse() {
+    pharmacy.registerPrescription("P-OVER", "Alice", 30, 70, "Drug", 500.1, 2);
+    assertFalse(pharmacy.validatePrescription("P-OVER"), "500.1 is above the 500.0 limit");
+}
+
+@Test void cost_exactlyAtFloor_KillsBoundaryMutant() {
+    // Elderly (age 65+) gets $10 discount. Base $20 + $0 dosage = $20. 
+    // $20 - $10 = $10, which should be corrected back to $20 by the floor logic.
+    assertEquals(20.0, pharmacy.calculateCost(65, 0.01), "Should not drop below $20 floor");
+}
+
+@Test void cost_ageExactly120_valid() {
+    // Kills the boundary mutant on age upper limit (line 114)
+    assertDoesNotThrow(() -> pharmacy.calculateCost(120, 100));
+}
 }
