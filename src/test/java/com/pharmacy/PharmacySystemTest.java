@@ -411,13 +411,37 @@ class PharmacySystemTest {
 }
 
 @Test void cost_exactlyAtFloor_KillsBoundaryMutant() {
-    // Elderly (age 65+) gets $10 discount. Base $20 + $0 dosage = $20. 
-    // $20 - $10 = $10, which should be corrected back to $20 by the floor logic.
     assertEquals(20.0, pharmacy.calculateCost(65, 0.01), "Should not drop below $20 floor");
 }
 
 @Test void cost_ageExactly120_valid() {
-    // Kills the boundary mutant on age upper limit (line 114)
     assertDoesNotThrow(() -> pharmacy.calculateCost(120, 100));
 }
+@Test
+void testDosageJustAboveMinimum_KillsLine56() {
+    // Age 20 (5mg/kg) * 2.01kg = 10.05mg
+    // This value is > 10.0, so it should NOT be clamped to 10.0.
+    double result = pharmacy.calculateDosage(20, 2.01);
+    assertEquals(10.05, result, 0.001, "10.05 is above the floor and should remain unchanged");
+}
+
+@Test
+void testDosageJustBelowMaximum_KillsLine57() {
+    // Age 20 (5mg/kg) * 99.9kg = 499.5mg
+    // This value is < 500.0, so it should NOT be clamped to 500.0.
+    double result = pharmacy.calculateDosage(20, 99.9);
+    assertEquals(499.5, result, 0.001, "499.5 is below the ceiling and should remain unchanged");
+}
+
+@Test
+void testCostExactlyAtFloor_KillsLine124() {
+    // Age 70 (Elderly), Dosage 1.0mg
+    // Math: Base $20 + ($1.0 * 0.50) = $20.50
+    // Discount: $20.50 - $10 (Elderly) = $10.50
+    // Result: Line 124 'if (10.50 < 20.0)' is TRUE, sets cost to $20.0
+    double cost = pharmacy.calculateCost(70, 1.0); 
+    assertEquals(20.0, cost, "The cost should be pulled up to the $20.0 minimum floor");
+}
+
+
 }
