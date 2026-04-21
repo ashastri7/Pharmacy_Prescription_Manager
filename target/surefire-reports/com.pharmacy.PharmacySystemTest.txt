@@ -1,4 +1,12 @@
 -------------------------------------------------------------------------------
 Test set: com.pharmacy.PharmacySystemTest
 -------------------------------------------------------------------------------
-Tests run: 93, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.060 s -- in com.pharmacy.PharmacySystemTest
+Tests run: 93, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 0.067 s <<< FAILURE! -- in com.pharmacy.PharmacySystemTest
+com.pharmacy.PharmacySystemTest.cost_exactlyAtFloor_KillsBoundaryMutant -- Time elapsed: 0.002 s <<< ERROR!
+java.lang.IllegalArgumentException: Age must be between 0 and 120
+	at com.pharmacy.PharmacySystem.calculateCost(PharmacySystem.java:115)
+	at com.pharmacy.PharmacySystemTest.cost_exactlyAtFloor_KillsBoundaryMutant(PharmacySystemTest.java:414)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+

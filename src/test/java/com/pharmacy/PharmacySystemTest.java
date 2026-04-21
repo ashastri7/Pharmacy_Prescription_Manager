@@ -411,7 +411,7 @@ class PharmacySystemTest {
 }
 
 @Test void cost_exactlyAtFloor_KillsBoundaryMutant() {
-    assertEquals(20.0, pharmacy.calculateCost(65, 0.01), "Should not drop below $20 floor");
+    assertEquals(20.0, pharmacy.calculateCost(650, 0.01), "Should not drop below $20 floor");
 }
 
 @Test void cost_ageExactly120_valid() {
