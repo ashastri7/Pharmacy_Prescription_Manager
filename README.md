@@ -11,21 +11,21 @@
 
 ## 📋 Table of Contents
 
-1. [Project Overview](#-project-overview)
-2. [Tech Stack](#-tech-stack)
-3. [Project Structure](-#project-structure)
-4. [Application Functions](#-application-functions)
-5. [Data Model & Schema](#-data-model-schema)
-6. [How to Run Locally](#-how-to-run-locally)
-7. [Testing](#-testing)
-8. [Coverage Report](#-coverage-report)
-9. [CI/CD Pipeline](#-cicd-pipeline)
-10. [Deployment](#-deployment)
-11. [Version Control](#-version-control)
+1. [Project Overview](#project-overview)
+2. [Tech Stack](#tech-stack)
+3. [Project Structure](#project-structure)
+4. [Application Functions](#application-functions)
+5. [Data Model & Schema](#data-model-schema)
+6. [How to Run Locally](#how-to-run-locally)
+7. [Testing](#testing)
+8. [Coverage Report](#coverage-report)
+9. [CI/CD Pipeline](#cicd-pipeline)
+10. [Deployment](#deployment)
+11. [Version Control](#version-control)
 
 ---
 
-## 🏥 Project Overview
+## Project Overview
 
 The Pharmacy Prescription Manager simulates a real pharmacy backend system. A pharmacist can:
 
@@ -39,7 +39,7 @@ The project demonstrates full software testing practices including BVA, EPC, Sta
 
 ---
 
-## 🛠️ Tech Stack
+## Tech Stack
 
 | Technology | Version | Purpose |
 |---|---|---|
@@ -54,7 +54,7 @@ The project demonstrates full software testing practices including BVA, EPC, Sta
 
 ---
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 Pharmacy_Prescription_Manager/
@@ -84,7 +84,7 @@ Pharmacy_Prescription_Manager/
 
 ---
 
-## ⚙️ Application Functions
+## Application Functions
 
 ### Function 1: `registerPrescription()`
 
@@ -186,7 +186,7 @@ Minimum cost = $20.00
 
 ---
 
-## 🗄️ Data Model & Schema
+## Data Model & Schema
 
 ### Entity: Prescription
 
@@ -259,7 +259,7 @@ each uniquely identified by prescriptionId.
 
 ---
 
-## 🚀 How to Run Locally
+## How to Run Locally
 
 ### Prerequisites
 - Java 21
@@ -281,7 +281,7 @@ open http://localhost:8080
 
 ---
 
-## 🧪 Testing
+## Testing
 
 ### Testing Techniques Used
 
@@ -372,7 +372,7 @@ mvn test
 
 ---
 
-## 📊 Coverage Report
+## Coverage Report
 
 ### How to View
 
@@ -394,7 +394,7 @@ open target/site/jacoco/index.html
 
 ---
 
-## ⚙️ CI/CD Pipeline
+## CI/CD Pipeline
 
 Every `git push` to `main` automatically triggers the following pipeline defined in `.github/workflows/ci.yml`:
 
@@ -446,7 +446,7 @@ jobs:
 
 ---
 
-## ☁️ Deployment
+## Deployment
 
 The application is deployed on **Railway** cloud platform.
 
@@ -469,7 +469,7 @@ java.runtime.version=21
 
 ---
 
-## 📝 Version Control
+## Version Control
 
 All changes tracked via Git and GitHub. Full commit history available at the repository.
 
@@ -485,7 +485,7 @@ All changes tracked via Git and GitHub. Full commit history available at the rep
 | Final submission | 98 tests passing, 96% coverage |
 
 
-## 🧬 Mutation Testing
+## Mutation Testing
 
 Mutation testing is performed using **PITest** to verify the strength 
 of the test suite.
