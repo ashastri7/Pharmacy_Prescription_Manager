@@ -11,17 +11,17 @@
 
 ## 📋 Table of Contents
 
-1. [Project Overview](#project-overview)
-2. [Tech Stack](#tech-stack)
-3. [Project Structure](#project-structure)
-4. [Application Functions](#application-functions)
-5. [Data Model & Schema](#data-model-schema)
-6. [How to Run Locally](#how-to-run-locally)
-7. [Testing](#testing)
-8. [Coverage Report](#coverage-report)
-9. [CI/CD Pipeline](#cicd-pipeline)
-10. [Deployment](#deployment)
-11. [Version Control](#version-control)
+1. [Project Overview](#-project-overview)
+2. [Tech Stack](#-tech-stack)
+3. [Project Structure](-#project-structure)
+4. [Application Functions](#-application-functions)
+5. [Data Model & Schema](#-data-model-schema)
+6. [How to Run Locally](#-how-to-run-locally)
+7. [Testing](#-testing)
+8. [Coverage Report](#-coverage-report)
+9. [CI/CD Pipeline](#-cicd-pipeline)
+10. [Deployment](#-deployment)
+11. [Version Control](#-version-control)
 
 ---
 
