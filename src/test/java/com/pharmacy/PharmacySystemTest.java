@@ -298,7 +298,7 @@ class PharmacySystemTest {
 
     @Test void df_dosage_mgPerKg_definedAndUsed_pediatric() {
         // mgPerKg defined as 3.0, flows to dosage = 3.0 * weight
-        assertEquals(190.0, pharmacy.calculateDosage(10, 40));
+        assertEquals(120.0, pharmacy.calculateDosage(10, 40));
     }
     @Test void df_dosage_mgPerKg_definedAndUsed_adult() {
         // mgPerKg defined as 5.0, flows to dosage = 5.0 * weight
