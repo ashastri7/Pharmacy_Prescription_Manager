@@ -22,6 +22,7 @@
 9. [CI/CD Pipeline](#cicd-pipeline)
 10. [Deployment](#deployment)
 11. [Version Control](#version-control)
+12. [Mutation Testing](#mutation-testing)
 
 ---
 
