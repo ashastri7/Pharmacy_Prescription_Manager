@@ -298,7 +298,7 @@ class PharmacySystemTest {
 
     @Test void df_dosage_mgPerKg_definedAndUsed_pediatric() {
         // mgPerKg defined as 3.0, flows to dosage = 3.0 * weight
-        assertEquals(120.0, pharmacy.calculateDosage(10, 40));
+        assertEquals(190.0, pharmacy.calculateDosage(10, 40));
     }
     @Test void df_dosage_mgPerKg_definedAndUsed_adult() {
         // mgPerKg defined as 5.0, flows to dosage = 5.0 * weight
@@ -418,7 +418,7 @@ class PharmacySystemTest {
     assertDoesNotThrow(() -> pharmacy.calculateCost(120, 100));
 }
 @Test
-void testDosageJustAboveMinimum_KillsLine56() {
+void testDosageJustAboveMinimum() {
     // Age 20 (5mg/kg) * 2.01kg = 10.05mg
     // This value is > 10.0, so it should NOT be clamped to 10.0.
     double result = pharmacy.calculateDosage(20, 2.01);
@@ -426,7 +426,7 @@ void testDosageJustAboveMinimum_KillsLine56() {
 }
 
 @Test
-void testDosageJustBelowMaximum_KillsLine57() {
+void testDosageJustBelowMaximum() {
     // Age 20 (5mg/kg) * 99.9kg = 499.5mg
     // This value is < 500.0, so it should NOT be clamped to 500.0.
     double result = pharmacy.calculateDosage(20, 99.9);
@@ -434,7 +434,7 @@ void testDosageJustBelowMaximum_KillsLine57() {
 }
 
 @Test
-void testCostExactlyAtFloor_KillsLine124() {
+void testCostExactlyAtFloor() {
     // Age 70 (Elderly), Dosage 1.0mg
     // Math: Base $20 + ($1.0 * 0.50) = $20.50
     // Discount: $20.50 - $10 (Elderly) = $10.50

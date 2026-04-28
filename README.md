@@ -1,11 +1,9 @@
-# 💊 Pharmacy Prescription Manager
+# Pharmacy Prescription Manager
 
 > A Java Spring Boot web application for managing patient prescriptions with full automated testing, CI/CD pipeline, and cloud deployment.
 
-**Developer:** Aneri Shastri  
 **Live App:** https://pharmacyprescriptionmanager-production.up.railway.app  
 **GitHub:** https://github.com/ashastri7/Pharmacy_Prescription_Manager  
-**Course:** Software Automation — Option 2 (CI/CD + Automated Testing)
 
 ---
 
