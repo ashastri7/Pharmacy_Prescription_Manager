@@ -67,15 +67,16 @@ import org.springframework.web.bind.annotation.RequestParam;
 <span class="fc" id="L67">                &quot;Recommended dosage: &quot; + dosage + &quot; mg&quot;);</span>
 <span class="fc" id="L68">            model.addAttribute(&quot;details&quot;, new String[]{</span>
 <span class="fc" id="L69">                &quot;Patient age: &quot; + age + &quot; (&quot; + category + &quot;)&quot;,</span>
-<span class="fc" id="L70">                &quot;Patient weight: &quot; + weight + &quot; kg&quot;,</span>
-<span class="fc" id="L71">                &quot;Calculated dosage: &quot; + dosage + &quot; mg&quot;</span>
+                
+<span class="fc" id="L71">                &quot;Patient weight: &quot; + weight + &quot; kg&quot;,</span>
+<span class="fc" id="L72">                &quot;Calculated dosage: &quot; + dosage + &quot; mg&quot;</span>
             });
-<span class="fc" id="L73">        } catch (Exception e) {</span>
-<span class="fc" id="L74">            model.addAttribute(&quot;action&quot;, &quot;Calculate Dosage&quot;);</span>
-<span class="fc" id="L75">            model.addAttribute(&quot;success&quot;, false);</span>
-<span class="fc" id="L76">            model.addAttribute(&quot;message&quot;, &quot;Error: &quot; + e.getMessage());</span>
+<span class="fc" id="L74">        } catch (Exception e) {</span>
+<span class="fc" id="L75">            model.addAttribute(&quot;action&quot;, &quot;Calculate Dosage&quot;);</span>
+<span class="fc" id="L76">            model.addAttribute(&quot;success&quot;, false);</span>
+<span class="fc" id="L77">            model.addAttribute(&quot;message&quot;, &quot;Error: &quot; + e.getMessage());</span>
         }
-<span class="fc" id="L78">        return &quot;result&quot;;</span>
+<span class="fc" id="L79">        return &quot;result&quot;;</span>
     }
 
     // Dispense medication
@@ -84,22 +85,22 @@ import org.springframework.web.bind.annotation.RequestParam;
             @RequestParam String id,
             Model model) {
         try {
-<span class="fc" id="L87">            String result = pharmacy.dispenseMedication(id);</span>
-<span class="fc" id="L88">            model.addAttribute(&quot;action&quot;, &quot;Dispense Medication&quot;);</span>
-<span class="fc" id="L89">            model.addAttribute(&quot;success&quot;, true);</span>
-<span class="fc" id="L90">            model.addAttribute(&quot;message&quot;, result);</span>
-<span class="fc" id="L91">            model.addAttribute(&quot;details&quot;, new String[]{</span>
-<span class="fc" id="L92">                &quot;Prescription ID: &quot; + id,</span>
-<span class="fc" id="L93">                &quot;Status: Dispensed successfully&quot;,</span>
-<span class="fc" id="L94">                &quot;Refills remaining: &quot; +</span>
-<span class="fc" id="L95">                    pharmacy.getPrescription(id).getRefillsRemaining()</span>
+<span class="fc" id="L88">            String result = pharmacy.dispenseMedication(id);</span>
+<span class="fc" id="L89">            model.addAttribute(&quot;action&quot;, &quot;Dispense Medication&quot;);</span>
+<span class="fc" id="L90">            model.addAttribute(&quot;success&quot;, true);</span>
+<span class="fc" id="L91">            model.addAttribute(&quot;message&quot;, result);</span>
+<span class="fc" id="L92">            model.addAttribute(&quot;details&quot;, new String[]{</span>
+<span class="fc" id="L93">                &quot;Prescription ID: &quot; + id,</span>
+<span class="fc" id="L94">                &quot;Status: Dispensed successfully&quot;,</span>
+<span class="fc" id="L95">                &quot;Refills remaining: &quot; +</span>
+<span class="fc" id="L96">                    pharmacy.getPrescription(id).getRefillsRemaining()</span>
             });
-<span class="fc" id="L97">        } catch (Exception e) {</span>
-<span class="fc" id="L98">            model.addAttribute(&quot;action&quot;, &quot;Dispense Medication&quot;);</span>
-<span class="fc" id="L99">            model.addAttribute(&quot;success&quot;, false);</span>
-<span class="fc" id="L100">            model.addAttribute(&quot;message&quot;, &quot;Error: &quot; + e.getMessage());</span>
+<span class="fc" id="L98">        } catch (Exception e) {</span>
+<span class="fc" id="L99">            model.addAttribute(&quot;action&quot;, &quot;Dispense Medication&quot;);</span>
+<span class="fc" id="L100">            model.addAttribute(&quot;success&quot;, false);</span>
+<span class="fc" id="L101">            model.addAttribute(&quot;message&quot;, &quot;Error: &quot; + e.getMessage());</span>
         }
-<span class="fc" id="L102">        return &quot;result&quot;;</span>
+<span class="fc" id="L103">        return &quot;result&quot;;</span>
     }
 
     // Calculate cost
@@ -109,27 +110,27 @@ import org.springframework.web.bind.annotation.RequestParam;
             @RequestParam double dosage,
             Model model) {
         try {
-<span class="fc" id="L112">            double cost = pharmacy.calculateCost(age, dosage);</span>
-<span class="fc bfc" id="L113" title="All 2 branches covered.">            String category = age &lt; 18 ? &quot;Pediatric (+$15 surcharge)&quot;</span>
-<span class="fc bfc" id="L114" title="All 2 branches covered.">                            : age &gt;= 65 ? &quot;Elderly (-$10 discount)&quot;</span>
-<span class="fc" id="L115">                            : &quot;Adult (standard rate)&quot;;</span>
-<span class="fc" id="L116">            model.addAttribute(&quot;action&quot;, &quot;Calculate Cost&quot;);</span>
-<span class="fc" id="L117">            model.addAttribute(&quot;success&quot;, true);</span>
-<span class="fc" id="L118">            model.addAttribute(&quot;message&quot;,</span>
-<span class="fc" id="L119">                &quot;Total prescription cost: $&quot; + cost);</span>
-<span class="fc" id="L120">            model.addAttribute(&quot;details&quot;, new String[]{</span>
-<span class="fc" id="L121">                &quot;Patient age: &quot; + age,</span>
-<span class="fc" id="L122">                &quot;Dosage: &quot; + dosage + &quot; mg&quot;,</span>
-<span class="fc" id="L123">                &quot;Pricing category: &quot; + category,</span>
-<span class="fc" id="L124">                &quot;Base cost: $&quot; + String.format(&quot;%.2f&quot;, 20.0 + dosage * 0.50),</span>
-<span class="fc" id="L125">                &quot;Final cost: $&quot; + cost</span>
+<span class="fc" id="L113">            double cost = pharmacy.calculateCost(age, dosage);</span>
+<span class="fc bfc" id="L114" title="All 2 branches covered.">            String category = age &lt; 18 ? &quot;Pediatric (+$15 surcharge)&quot;</span>
+<span class="fc bfc" id="L115" title="All 2 branches covered.">                            : age &gt;= 65 ? &quot;Elderly (-$10 discount)&quot;</span>
+<span class="fc" id="L116">                            : &quot;Adult (standard rate)&quot;;</span>
+<span class="fc" id="L117">            model.addAttribute(&quot;action&quot;, &quot;Calculate Cost&quot;);</span>
+<span class="fc" id="L118">            model.addAttribute(&quot;success&quot;, true);</span>
+<span class="fc" id="L119">            model.addAttribute(&quot;message&quot;,</span>
+<span class="fc" id="L120">                &quot;Total prescription cost: $&quot; + cost);</span>
+<span class="fc" id="L121">            model.addAttribute(&quot;details&quot;, new String[]{</span>
+<span class="fc" id="L122">                &quot;Patient age: &quot; + age,</span>
+<span class="fc" id="L123">                &quot;Dosage: &quot; + dosage + &quot; mg&quot;,</span>
+<span class="fc" id="L124">                &quot;Pricing category: &quot; + category,</span>
+<span class="fc" id="L125">                &quot;Base cost: $&quot; + String.format(&quot;%.2f&quot;, 20.0 + dosage * 0.50),</span>
+<span class="fc" id="L126">                &quot;Final cost: $&quot; + cost</span>
             });
-<span class="fc" id="L127">        } catch (Exception e) {</span>
-<span class="fc" id="L128">            model.addAttribute(&quot;action&quot;, &quot;Calculate Cost&quot;);</span>
-<span class="fc" id="L129">            model.addAttribute(&quot;success&quot;, false);</span>
-<span class="fc" id="L130">            model.addAttribute(&quot;message&quot;, &quot;Error: &quot; + e.getMessage());</span>
+<span class="fc" id="L128">        } catch (Exception e) {</span>
+<span class="fc" id="L129">            model.addAttribute(&quot;action&quot;, &quot;Calculate Cost&quot;);</span>
+<span class="fc" id="L130">            model.addAttribute(&quot;success&quot;, false);</span>
+<span class="fc" id="L131">            model.addAttribute(&quot;message&quot;, &quot;Error: &quot; + e.getMessage());</span>
         }
-<span class="fc" id="L132">        return &quot;result&quot;;</span>
+<span class="fc" id="L133">        return &quot;result&quot;;</span>
     }
 
     // Validate prescription
@@ -138,22 +139,22 @@ import org.springframework.web.bind.annotation.RequestParam;
             @RequestParam String id,
             Model model) {
         try {
-<span class="fc" id="L141">            boolean valid = pharmacy.validatePrescription(id);</span>
-<span class="fc" id="L142">            model.addAttribute(&quot;action&quot;, &quot;Validate Prescription&quot;);</span>
-<span class="fc" id="L143">            model.addAttribute(&quot;success&quot;, valid);</span>
-<span class="fc" id="L144">            model.addAttribute(&quot;message&quot;,</span>
-<span class="fc bfc" id="L145" title="All 2 branches covered.">                valid ? &quot;Prescription &quot; + id + &quot; is VALID for dispensing&quot;</span>
-<span class="fc" id="L146">                      : &quot;Prescription &quot; + id + &quot; is INVALID&quot;);</span>
-<span class="fc" id="L147">            model.addAttribute(&quot;details&quot;, new String[]{</span>
-<span class="fc" id="L148">                &quot;Prescription ID: &quot; + id,</span>
-<span class="fc" id="L149">                &quot;Valid: &quot; + valid</span>
+<span class="fc" id="L142">            boolean valid = pharmacy.validatePrescription(id);</span>
+<span class="fc" id="L143">            model.addAttribute(&quot;action&quot;, &quot;Validate Prescription&quot;);</span>
+<span class="fc" id="L144">            model.addAttribute(&quot;success&quot;, valid);</span>
+<span class="fc" id="L145">            model.addAttribute(&quot;message&quot;,</span>
+<span class="fc bfc" id="L146" title="All 2 branches covered.">                valid ? &quot;Prescription &quot; + id + &quot; is VALID for dispensing&quot;</span>
+<span class="fc" id="L147">                      : &quot;Prescription &quot; + id + &quot; is INVALID&quot;);</span>
+<span class="fc" id="L148">            model.addAttribute(&quot;details&quot;, new String[]{</span>
+<span class="fc" id="L149">                &quot;Prescription ID: &quot; + id,</span>
+<span class="fc" id="L150">                &quot;Valid: &quot; + valid</span>
             });
-<span class="fc" id="L151">        } catch (Exception e) {</span>
-<span class="fc" id="L152">            model.addAttribute(&quot;action&quot;, &quot;Validate Prescription&quot;);</span>
-<span class="fc" id="L153">            model.addAttribute(&quot;success&quot;, false);</span>
-<span class="fc" id="L154">            model.addAttribute(&quot;message&quot;, &quot;Error: &quot; + e.getMessage());</span>
+<span class="fc" id="L152">        } catch (Exception e) {</span>
+<span class="fc" id="L153">            model.addAttribute(&quot;action&quot;, &quot;Validate Prescription&quot;);</span>
+<span class="fc" id="L154">            model.addAttribute(&quot;success&quot;, false);</span>
+<span class="fc" id="L155">            model.addAttribute(&quot;message&quot;, &quot;Error: &quot; + e.getMessage());</span>
         }
-<span class="fc" id="L156">        return &quot;result&quot;;</span>
+<span class="fc" id="L157">        return &quot;result&quot;;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>

@@ -67,6 +67,7 @@ public class PharmacyController {
                 "Recommended dosage: " + dosage + " mg");
             model.addAttribute("details", new String[]{
                 "Patient age: " + age + " (" + category + ")",
+                
                 "Patient weight: " + weight + " kg",
                 "Calculated dosage: " + dosage + " mg"
             });
