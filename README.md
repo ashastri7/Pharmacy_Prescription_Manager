@@ -3,7 +3,8 @@
 > A Java Spring Boot web application for managing patient prescriptions with full automated testing, CI/CD pipeline, and cloud deployment.
 
 **Live App:** https://pharmacyprescriptionmanager-production.up.railway.app  
-**GitHub:** https://github.com/ashastri7/Pharmacy_Prescription_Manager  
+**GITHub:** https://github.com/ashastri7/Pharmacy_Prescription_Manager  
+**GITBook:** https://umassd.gitbook.io/umassd-docs/ 
 
 ---
 
