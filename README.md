@@ -3,7 +3,10 @@
 > A Java Spring Boot web application for managing patient prescriptions with full automated testing, CI/CD pipeline, and cloud deployment.
 
 **Live App:** https://pharmacyprescriptionmanager-production.up.railway.app  
-**GitHub:** https://github.com/ashastri7/Pharmacy_Prescription_Manager  
+**GitHub:** https://github.com/ashastri7/Pharmacy_Prescription_Manager 
+**GITBook:** https://umassd.gitbook.io/umassd-docs/
+
+
 
 ---
 
@@ -59,26 +62,26 @@ The project demonstrates full software testing practices including BVA, EPC, Sta
 Pharmacy_Prescription_Manager/
 ├── .github/
 │   └── workflows/
-│       └── ci.yml                      ← CI/CD pipeline
+│       └── ci.yml                      > CI/CD pipeline
 ├── src/
 │   ├── main/java/com/pharmacy/
-│   │   ├── PharmacyApplication.java    ← Spring Boot entry point
-│   │   ├── PharmacyController.java     ← Web layer (handles HTTP requests)
-│   │   ├── PharmacySystem.java         ← Business logic (5 core functions)
-│   │   └── Prescription.java          ← Data model entity
+│   │   ├── PharmacyApplication.java    > Spring Boot entry point > starts everything up
+│   │   ├── PharmacyController.java     > Web layer (handles HTTP requests) > takes orders from the website
+│   │   ├── PharmacySystem.java         > Business logic (5 core functions) > does all the actual work
+│   │   └── Prescription.java          > Data model entity > holds patient's data
 │   ├── test/java/com/pharmacy/
-│   │   ├── PharmacySystemTest.java     ← Unit tests (82 tests)
-│   │   └── PharmacyControllerTest.java ← Integration tests (16 tests)
+│   │   ├── PharmacySystemTest.java     > Unit tests (82 tests)
+│   │   └── PharmacyControllerTest.java > Integration tests (16 tests)
 │   └── resources/
 │       ├── templates/
-│       │   ├── index.html              ← Dashboard web page
-│       │   └── result.html            ← Result display page
-│       └── application.properties     ← App configuration
+│       │   ├── index.html              > Dashboard web page
+│       │   └── result.html            > Result display page
+│       └── application.properties     > App configuration
 ├── docs/
-│   └── index.md                       ← Additional documentation
-├── Procfile                           ← Railway deployment config
-├── system.properties                  ← Java version for Railway
-└── pom.xml                           ← Maven build configuration
+│   └── index.md                       > Additional documentation
+├── Procfile                           > Railway deployment config
+├── system.properties                  > Java version for Railway
+└── pom.xml                           > Maven build configuration
 ```
 
 ---
@@ -384,10 +387,10 @@ open target/site/jacoco/index.html
 
 | File | Instruction Coverage | Branch Coverage |
 |---|---|---|
-| PharmacySystem.java | 96% | 91% |
+| PharmacySystem.java | 99% | 96% |
 | PharmacyController.java | 85%+ | 80%+ |
 | Prescription.java | 77% | n/a |
-| **Overall** | **~96%** | **~91%** |
+| **Overall** | **~99%** | **~96%** |
 
 > Note: The remaining uncovered code is primarily the Spring Boot `main()` method in `PharmacyApplication.java`. This is a framework entry point that cannot be invoked during unit tests — standard practice in all Spring Boot projects.
 

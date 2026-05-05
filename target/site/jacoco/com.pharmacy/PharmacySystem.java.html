@@ -28,7 +28,7 @@ import java.util.Map;
 <span class="fc" id="L28">            throw new IllegalArgumentException(&quot;Prescription ID already exists&quot;);</span>
 
 <span class="fc" id="L30">        prescriptions.put(id, new Prescription(id, patientName, patientAge,</span>
-<span class="fc" id="L31">                                            weightKg, drugName, dosageMg, refills));</span>
+                                            weightKg, drugName, dosageMg, refills));
 <span class="fc" id="L32">    }</span>
 
     // FUNCTION 2: Calculate dosage based on weight
@@ -47,7 +47,7 @@ import java.util.Map;
 <span class="fc" id="L47">            mgPerKg = 3.0;       // pediatric</span>
 <span class="fc bfc" id="L48" title="All 2 branches covered.">        } else if (patientAge &lt;= 64) {</span>
 <span class="fc" id="L49">            mgPerKg = 5.0;       // adult</span>
-<span class="fc" id="L50">        } else {</span>
+        } else {
 <span class="fc" id="L51">            mgPerKg = 4.0;       // elderly</span>
         }
 
